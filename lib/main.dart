@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_test/app/app.dart';
 
+import 'core/core.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  AppDependecies.instancia.dependecies();
-  runApp(const AppWidget());
+  runApp(BaseAppRun(dependencies: AppDependecies(), child: const AppWidget()));
 }

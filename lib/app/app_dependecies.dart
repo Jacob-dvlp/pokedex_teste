@@ -1,6 +1,6 @@
-class AppDependecies {
-  AppDependecies._();
-  static AppDependecies get instancia => AppDependecies._();
+import 'package:pokedex_test/core/core.dart';
 
-  void dependecies() {}
+class AppDependecies extends BaseDependencies {
+  @override
+  void dependencies(Dependencies g) {}
 }
