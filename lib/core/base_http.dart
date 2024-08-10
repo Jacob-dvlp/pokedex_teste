@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pokedex_test/core/error/exceptions.dart';
 
-class BaseHttp {
+import 'infra/base_http_interface.dart';
+
+class BaseHttp implements IBaseHttp {
   final Dio _dio;
 
   BaseHttp(this._dio, {Interceptor? interceptor}) {
@@ -11,17 +13,22 @@ class BaseHttp {
     }
   }
 
+  @override
   Future<Response> get(String path, {Map<String, dynamic>? queryParameters}) async {
     try {
       final response = await _dio.get(path, queryParameters: queryParameters);
-      _logInfos(response.requestOptions.path, queryParameters: response.requestOptions.queryParameters, headers: response.requestOptions.headers, data: response.requestOptions.data);
-      _logResponse(response.requestOptions.path, headers: response.requestOptions.headers, response: response);
+      _logInfos(path, queryParameters: response.requestOptions.queryParameters, headers: response.requestOptions.headers, data: response.requestOptions.data);
+      _logResponse(path, headers: response.requestOptions.headers, response: response);
       return response;
     } on DioException catch (e) {
       debugPrint("DioException: ${e.message}");
       if (e.response?.statusCode != null) {
         _logErrorResponse(e.response!);
-        throw ServerException(statusCode: e.response?.statusCode ?? 0, statusMessage: e.response?.statusMessage ?? '', dataMessage: e.response?.data.toString() ?? '');
+        throw ServerException(
+          statusCode: e.response?.statusCode ?? 0,
+          statusMessage: e.response?.statusMessage ?? '',
+          dataMessage: e.response?.data.toString() ?? '',
+        );
       } else {
         throw NoConnectionException();
       }
