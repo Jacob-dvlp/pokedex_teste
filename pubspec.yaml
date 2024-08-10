@@ -27,3 +27,8 @@ flutter:
   assets:
     - assets/images/
     - assets/images/icons/
+
+  fonts:
+    - family: pokeicon
+      fonts:
+        - asset: assets/fonts/pokeicon.ttf
