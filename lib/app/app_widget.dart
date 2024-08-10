@@ -5,10 +5,19 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pokedex Test',
-      home: Scaffold(
-        appBar: AppBar(),
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Banner(
+        message: 'TEST',
+        color: Colors.blue,
+        location: BannerLocation.topEnd,
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Pokedex Test',
+          home: Scaffold(
+            appBar: AppBar(),
+          ),
+        ),
       ),
     );
   }
