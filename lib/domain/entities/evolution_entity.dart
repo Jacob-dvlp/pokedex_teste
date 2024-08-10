@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-class EvolutionModel {
+class EvolutionEntity {
   PrimaryPokemon primaryPokemon;
 
-  EvolutionModel({
+  EvolutionEntity({
     required this.primaryPokemon,
   });
 
@@ -13,15 +13,15 @@ class EvolutionModel {
     };
   }
 
-  factory EvolutionModel.fromMap(Map<String, dynamic> map) {
-    return EvolutionModel(
+  factory EvolutionEntity.fromMap(Map<String, dynamic> map) {
+    return EvolutionEntity(
       primaryPokemon: PrimaryPokemon.fromMap(map['chain']),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory EvolutionModel.fromJson(String source) => EvolutionModel.fromMap(json.decode(source));
+  factory EvolutionEntity.fromJson(String source) => EvolutionEntity.fromMap(json.decode(source));
 }
 
 class PrimaryPokemon {
