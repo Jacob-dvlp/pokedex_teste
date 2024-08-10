@@ -1,7 +1,5 @@
-import 'package:get_it/get_it.dart';
-
-typedef Dependencies = GetIt;
+import 'package:pokedex_test/core/dependencies/dependencies_get_id.dart';
 
 abstract class BaseDependencies {
-  dependencies(Dependencies g) {}
+  void dependencies(Dependencies d);
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_test/presentations/presentation.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -14,9 +15,7 @@ class AppWidget extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Pokedex Test',
-          home: Scaffold(
-            appBar: AppBar(),
-          ),
+          home: HomePage(),
         ),
       ),
     );
