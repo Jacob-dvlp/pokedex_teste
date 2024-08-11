@@ -1,11 +1,16 @@
 import 'package:pokedex_test/core/core.dart';
+import 'package:pokedex_test/data/data.dart';
+import 'package:pokedex_test/domain/domain.dart';
 
 import 'home.dart';
 
 class HomeDependecie extends BaseDependencies {
   @override
   void dependencies(Dependencies d) {
-    d.registerLazySingleton(() => HomeStore());
-    d.registerLazySingleton(() => HomeController.new);
+    d.registerLazySingleton<IGetPokemonListDatasource>(() => GetPokemonListDatasource(conector: d<IBaseConector>()));
+    d.registerLazySingleton<IGetPokemonListRepositorio>(() => GetPokemonListRepositorio(datasource: d<IGetPokemonListDatasource>()));
+    d.registerLazySingleton(() => GetPokemonListUsecase(repository: d<IGetPokemonListRepositorio>()));
+    d.registerLazySingleton(() => HomeStore(d<GetPokemonListUsecase>()));
+    d.registerLazySingleton(() => HomeController());
   }
 }

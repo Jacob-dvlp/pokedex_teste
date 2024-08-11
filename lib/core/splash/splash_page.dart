@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_test/shared/assets/assets.dart';
 
 class SplashPage extends StatefulWidget {
-  final String initialRoute;
+  final Widget initialRoute;
   const SplashPage({super.key, required this.initialRoute});
 
   @override
@@ -18,6 +18,9 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     super.initState();
     _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2))..repeat(reverse: true);
     _colorAnimation = ColorTween(begin: Colors.red, end: Colors.blue).animate(_controller);
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => widget.initialRoute));
+    });
   }
 
   @override

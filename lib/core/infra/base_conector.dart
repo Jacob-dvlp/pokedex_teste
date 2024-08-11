@@ -7,7 +7,6 @@ abstract interface class IBaseConector implements IBaseHttp {}
 
 class BaseConector extends BaseHttp implements IBaseConector {
   final Dio dio;
-  final Interceptor interceptor;
 
-  BaseConector({required this.dio, required this.interceptor}) : super(dio, interceptor: interceptor);
+  BaseConector({required this.dio}) : super(dio);
 }

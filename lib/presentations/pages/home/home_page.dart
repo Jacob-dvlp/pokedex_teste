@@ -12,16 +12,32 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Pokémon List'),
       ),
-      body: Center(
-        child: Observer(
-          builder: (_) => Text('Counter: ${controller.homeStore.counter}'),
-        ),
+      body: Observer(
+        builder: (_) {
+          if (controller.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (controller.errorMessage != null) {
+            return Center(child: Text(controller.errorMessage!));
+          }
+          return ListView.builder(
+            itemCount: controller.pokemonList.length,
+            itemBuilder: (context, index) {
+              final pokemon = controller.pokemonList[index];
+              return ListTile(
+                title: Text(pokemon.name),
+              );
+            },
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: controller.incrementCounter,
-        child: const Icon(Icons.add),
+        onPressed: () {
+          controller.fetchPokemonList(offSet: 0, limit: 20); // Exemplo de parâmetros
+        },
+        child: const Icon(Icons.refresh),
       ),
     );
   }

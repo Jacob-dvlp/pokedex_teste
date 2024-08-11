@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_test/presentations/pages/home/home.dart';
 
 import '../core/splash/splash_page.dart';
 
@@ -7,7 +8,7 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Directionality(
+    return Directionality(
       textDirection: TextDirection.ltr,
       child: Banner(
         message: 'TEST',
@@ -16,9 +17,7 @@ class AppWidget extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Pokedex Test',
-          home: SplashPage(
-            initialRoute: '',
-          ),
+          home: SplashPage(initialRoute: HomePage()),
         ),
       ),
     );
