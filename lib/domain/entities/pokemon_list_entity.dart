@@ -38,6 +38,7 @@ class PokemonListEntity {
 class PokemonListResultEntity {
   final String name;
   final String url;
+
   PokemonListResultEntity({
     required this.name,
     required this.url,
@@ -61,12 +62,3 @@ class PokemonListResultEntity {
 
   factory PokemonListResultEntity.fromJson(String source) => PokemonListResultEntity.fromMap(json.decode(source));
 }
-
-// count: 1281,
-// next: "https://pokeapi.co/api/v2/pokemon/?offset=150&limit=50",
-// previous: "https://pokeapi.co/api/v2/pokemon/?offset=50&limit=50",
-// results: [
-// {
-// name: "electrode",
-// url: "https://pokeapi.co/api/v2/pokemon/101/"
-// },

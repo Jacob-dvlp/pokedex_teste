@@ -13,13 +13,13 @@ mixin _$HomeStore on _HomeStoreBase, Store {
       Atom(name: '_HomeStoreBase.pokemonList', context: context);
 
   @override
-  ObservableList<PokemonListResultEntity> get pokemonList {
+  ObservableList<PokemonEntity> get pokemonList {
     _$pokemonListAtom.reportRead();
     return super.pokemonList;
   }
 
   @override
-  set pokemonList(ObservableList<PokemonListResultEntity> value) {
+  set pokemonList(ObservableList<PokemonEntity> value) {
     _$pokemonListAtom.reportWrite(value, super.pokemonList, () {
       super.pokemonList = value;
     });
@@ -57,13 +57,29 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
+  late final _$offSetAtom =
+      Atom(name: '_HomeStoreBase.offSet', context: context);
+
+  @override
+  int get offSet {
+    _$offSetAtom.reportRead();
+    return super.offSet;
+  }
+
+  @override
+  set offSet(int value) {
+    _$offSetAtom.reportWrite(value, super.offSet, () {
+      super.offSet = value;
+    });
+  }
+
   late final _$fetchPokemonListAsyncAction =
       AsyncAction('_HomeStoreBase.fetchPokemonList', context: context);
 
   @override
-  Future<void> fetchPokemonList({required int offSet, required int limit}) {
+  Future<void> fetchPokemonList({required int limit}) {
     return _$fetchPokemonListAsyncAction
-        .run(() => super.fetchPokemonList(offSet: offSet, limit: limit));
+        .run(() => super.fetchPokemonList(limit: limit));
   }
 
   @override
@@ -71,7 +87,8 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     return '''
 pokemonList: ${pokemonList},
 isLoading: ${isLoading},
-errorMessage: ${errorMessage}
+errorMessage: ${errorMessage},
+offSet: ${offSet}
     ''';
   }
 }

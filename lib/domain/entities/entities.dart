@@ -1,7 +1,12 @@
 export 'ability_entity.dart';
+export 'detail_entity.dart';
+export 'dream_world_entity.dart';
 export 'evolution_entity.dart';
-export 'move_model.dart';
+export 'home_entity.dart';
+export 'move_entity.dart';
+export 'official_artwork_entity.dart';
+export 'other_sprites_entity.dart';
+export 'pokemon_entity.dart';
 export 'pokemon_list_entity.dart';
-export 'pokemon_model.dart';
-export 'stat_model.dart';
-export 'type_model.dart';
+export 'showdown_entity.dart';
+export 'sprites_entity.dart';

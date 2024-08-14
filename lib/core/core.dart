@@ -5,7 +5,6 @@ export 'dependencies/dependencies.dart';
 export 'error/base_failure.dart';
 export 'error/exceptions.dart';
 export 'functions.dart';
-export 'infra/base_conector.dart';
+export 'infra/base_connector.dart';
 export 'infra/base_http_interface.dart';
-export 'infra/base_interceptor.dart';
 export 'result_state.dart';

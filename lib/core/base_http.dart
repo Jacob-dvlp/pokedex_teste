@@ -7,16 +7,12 @@ import 'infra/base_http_interface.dart';
 class BaseHttp implements IBaseHttp {
   final Dio _dio;
 
-  BaseHttp(this._dio, {Interceptor? interceptor}) {
-    if (interceptor != null) {
-      _addInterceptor(interceptor);
-    }
-  }
+  BaseHttp(this._dio);
 
   @override
-  Future<Response> get(String path, {Map<String, dynamic>? queryParameters}) async {
+  Future<Response> get(String path) async {
     try {
-      final response = await _dio.get(path, queryParameters: queryParameters);
+      final response = await _dio.get(path);
       _logInfos(path, queryParameters: response.requestOptions.queryParameters, headers: response.requestOptions.headers, data: response.requestOptions.data);
       _logResponse(path, headers: response.requestOptions.headers, response: response);
       return response;
@@ -39,8 +35,6 @@ class BaseHttp implements IBaseHttp {
       throw NoConnectionException();
     }
   }
-
-  void _addInterceptor(Interceptor interceptor) => _dio.interceptors.add(interceptor);
 
   void _logInfos(String path, {Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers, dynamic data}) {
     debugPrint('Path: ${_dio.options.baseUrl}$path \nQueryParam: $queryParameters \nData: $data \nHeaders: $headers');

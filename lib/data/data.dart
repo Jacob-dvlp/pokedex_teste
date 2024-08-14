@@ -1,2 +1,2 @@
-export 'datasourcies/datasourcies.dart';
+export 'datasources/datasources.dart';
 export 'repositories/repositories.dart';

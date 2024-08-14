@@ -7,7 +7,7 @@ import 'home.dart';
 class HomeDependecie extends BaseDependencies {
   @override
   void dependencies(Dependencies d) {
-    d.registerLazySingleton<IGetPokemonListDatasource>(() => GetPokemonListDatasource(conector: d<IBaseConector>()));
+    d.registerLazySingleton<IGetPokemonListDatasource>(() => GetPokemonListDatasource(conector: d<IBaseConnector>()));
     d.registerLazySingleton<IGetPokemonListRepositorio>(() => GetPokemonListRepositorio(datasource: d<IGetPokemonListDatasource>()));
     d.registerLazySingleton(() => GetPokemonListUsecase(repository: d<IGetPokemonListRepositorio>()));
     d.registerLazySingleton(() => HomeStore(d<GetPokemonListUsecase>()));

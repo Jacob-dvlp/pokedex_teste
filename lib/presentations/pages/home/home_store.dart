@@ -11,7 +11,7 @@ abstract class _HomeStoreBase with Store {
   _HomeStoreBase(this.getPokemonListUsecase);
 
   @observable
-  ObservableList<PokemonListResultEntity> pokemonList = ObservableList<PokemonListResultEntity>();
+  ObservableList<PokemonEntity> pokemonList = ObservableList<PokemonEntity>();
 
   @observable
   bool isLoading = false;
@@ -19,17 +19,19 @@ abstract class _HomeStoreBase with Store {
   @observable
   String? errorMessage;
 
+  @observable
+  int offSet = 0;
+
   @action
-  Future<void> fetchPokemonList({required int offSet, required int limit}) async {
+  Future<void> fetchPokemonList({required int limit}) async {
+    if (isLoading) return;
     isLoading = true;
     errorMessage = null;
-
     final result = await getPokemonListUsecase(offSet: offSet, limit: limit);
-
-    result.ways(
+    result.map(
       (data) {
-        pokemonList.clear();
         pokemonList.addAll(data);
+        offSet += limit;
       },
       (error) {
         errorMessage = "Failed to load Pokemon list: ${error.message}";

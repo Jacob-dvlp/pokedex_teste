@@ -6,7 +6,7 @@ class AppDependecies extends BaseDependencies {
   @override
   void dependencies(Dependencies d) {
     d.registerSingleton<Dio>(Dio(BaseOptions(baseUrl: 'https://pokeapi.co/api/v2/')));
-    d.registerLazySingleton<IBaseConector>(() => BaseConector(dio: d<Dio>()));
+    d.registerLazySingleton<IBaseConnector>(() => BaseConnector(dio: d<Dio>()));
     HomeDependecie().dependencies(d);
   }
 }

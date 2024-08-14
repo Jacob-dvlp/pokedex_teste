@@ -7,7 +7,7 @@ environment:
   sdk: '>=3.4.4 <4.0.0'
 
 dependencies:
-  build_runner: ^2.4.11
+
   dio: ^5.5.0+1
   flutter:
     sdk: flutter
@@ -16,17 +16,21 @@ dependencies:
   mobx: ^2.3.3+2
   mobx_codegen: ^2.6.1
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
-
+  mockito: ^5.4.4
+  test: ^1.25.2
+  build_runner: ^2.4.11
 flutter:
   uses-material-design: true
   
   assets:
     - assets/images/
     - assets/images/icons/
+    - assets/images/elements/
 
   fonts:
     - family: pokeicon
